@@ -12,17 +12,17 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE")
-//        classpath("no.nils:wsdl2java:0.6") // TODO: update this to 0.8 - the latest
-//        classpath("org.apache.cxf:cxf-tools-wsdlto-frontend-jaxws:3.1.0")
+        classpath("no.nils:wsdl2java:0.6") // TODO: update this to 0.8 - the latest
+        classpath("org.apache.cxf:cxf-tools-wsdlto-frontend-jaxws:3.1.0")
 //        classpath("org.apache.cxf:cxf-tools-wsdlto-databinding-jaxb:3.1.0")
-//        classpath("org.apache.cxf:cxf-tools:3.1.0")
+        classpath("org.apache.cxf:cxf-tools:3.1.0")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-//apply plugin: 'no.nils.wsdl2java'
+apply plugin: 'no.nils.wsdl2java'
 
 jar {
     baseName = 'camel-boot'
@@ -38,23 +38,18 @@ repositories {
 }
 
 dependencies {
-    compile (group: 'org.apache.camel',         name: 'camel-spring-boot',         version: '2.16.1')
-    compile (group: 'org.apache.camel',         name: 'camel-netty4-http',         version: '2.16.1')
-    compile (group: 'org.apache.camel',         name: 'camel-jackson',             version: '2.16.1')
-    compile (group: 'org.apache.camel',         name: 'camel-swagger-java',        version: '2.16.1')
-    compile (group: 'org.apache.camel',         name: 'camel-cxf',                 version: '2.16.1')
-//    compile (group: 'org.apache.cxf',           name: 'cxf-rt-transports-http',    version: '3.1.4')
-    compile (group: 'org.springframework.boot', name: 'spring-boot',               version: '1.3.1.RELEASE')
-    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-web',   version: '1.3.1.RELEASE')
-    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-actuator',   version: '1.3.1.RELEASE')
-//    compile (group: 'javax.servlet',            name: 'javax.servlet-api',         version: '3.1.0')
-//    compile (group: 'com.capgemini',            name: 'archaius-spring-adapter',   version: '0.9.3')
+    compile (group: 'org.apache.camel',         name: 'camel-spring-boot',            version: '2.16.1')
+    compile (group: 'org.apache.camel',         name: 'camel-cxf',                    version: '2.16.1')
+    compile (group: 'org.apache.cxf',           name: 'cxf-rt-transports-http-jetty', version: '3.1.4')
+    compile (group: 'org.springframework.boot', name: 'spring-boot',                  version: '1.3.1.RELEASE')
+    compile (group: 'org.springframework.boot', name: 'spring-boot-starter-web',      version: '1.3.1.RELEASE')
+    compile group: 'org.springframework.boot' , name: 'spring-boot-starter-jetty',    version: '1.3.1.RELEASE'
 
     testCompile (group: 'junit',                    name: 'junit',                    version: '4.11')
-    testCompile (group: 'com.jayway.restassured',   name: 'rest-assured',             version: '2.4.1') // add for all web-based testing
+    testCompile (group: 'com.jayway.restassured',   name: 'rest-assured',             version: '2.4.1')
     testCompile (group: 'org.apache.camel',         name: 'camel-test-spring',        version: '2.16.1')
     testCompile (group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.3.1.RELEASE')
-    testCompile (group: 'javax.servlet',            name: 'javax.servlet-api',        version: '3.1.0') // TODO: this is a duplicate
+//    testCompile (group: 'javax.servlet',            name: 'javax.servlet-api',        version: '3.1.0') // TODO: this is a duplicate
 }
 
 configurations {
@@ -65,15 +60,13 @@ springBoot {
     mainClass = 'org.apache.camel.spring.boot.FatJarRouter'
 }
 
-//wsdl2java {
-//    generatedWsdlDir = file("target/generated-sources/wsdl2java")  // target directory for generated source code
-//    wsdlDir = file("src/main/resources/META-INF/wsdl") // define to support incremental build
-//    wsdlsToGenerate = [   //  2d-array of wsdls and cxf-parameters
-//                          ['src/main/resources/META-INF/wsdl/SubscriptionService.wsdl']
-//    ]
-//    cxfVersion = "3.1.0"
-//}
-//
-//sourceSets {
-//    main.java.srcDirs +=[file("target/generated-sources/wsdl2java")]
-//}
+wsdl2java {
+    generatedWsdlDir = file("target/generated-sources/wsdl2java")  // target directory for generated source code
+    wsdlDir          = file("src/main/resources/META-INF/wsdl") // define to support incremental build
+    wsdlsToGenerate  = [['src/main/resources/META-INF/wsdl/SubscriptionService.wsdl']]
+    cxfVersion       = "3.1.0"
+}
+
+sourceSets {
+    main.java.srcDirs +=[file("target/generated-sources/wsdl2java")]
+}

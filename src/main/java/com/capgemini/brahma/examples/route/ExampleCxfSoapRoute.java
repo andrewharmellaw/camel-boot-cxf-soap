@@ -11,6 +11,11 @@ public class ExampleCxfSoapRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
 
+        from("cxf:bean:routerEndpoint")
+                .to("cxf:bean:serviceEndpoint");
+
+//        from("cxf:bean:serviceEndpoint").
+
 //        from("cxf:bean:subscriptionSOAPService")
 //                .routeId(ExampleCxfSoapRoute.class.getSimpleName())
 //                .onCompletion()

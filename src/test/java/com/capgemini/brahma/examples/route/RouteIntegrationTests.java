@@ -24,21 +24,9 @@ public class RouteIntegrationTests {
     }
 
     @Test
-    public void nettyHelloWorldTest() throws Exception {
-        RestAssured.port = 18080; // TODO: this should be loaded from config
-        when().get("/").then().body(equalTo("helloWorld"));
-    }
-
-    @Test
-    public void restGetHelloTest() throws Exception {
-        RestAssured.port = 10000;  // TODO  : this should be loaded from config
-        when().get("/rest/hello").then().body(equalTo("\"BOOOOOOOM!!!!!\""));
-    }
-
-    @Ignore
-    @Test
     public void soapHandCrankedTest() throws Exception {
-        RestAssured.port = 1111;  // TODO  : this should be loaded from config
-        when().post("/subscriptions/service/SubscriptionSOAPService").then().body(equalTo("\"BOOOOOOOM!!!!!\""));
+        RestAssured.port = 9003;  // TODO  : this should be loaded from config
+        when().post("/CamelContext/RouterPort").then().body(equalTo("<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><soap:Fault><faultcode>soap:Client</faultcode><faultstring>Error reading XMLStreamReader: Unexpected EOF in prolog\n" +
+                " at [row,col {unknown-source}]: [1,0]</faultstring></soap:Fault></soap:Body></soap:Envelope>"));
     }
 }
