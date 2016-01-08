@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#  Description:			Request Recurring Payments SOAP service request and response definition
+#  Revision: 			1.0
+#  Date: 				19/10/2015
+#  Owner:				Mark Cornforth (RMG Enterprise Integration Architect)
+#  Canonical Model:	    Aligned with RMG Canonical Model (CM) v4.2
+################################################################################
+#  History:
+#  Version		Date 				Author					Description of Change
+#  v1.0	    	19/10/2015          Gayathri Thiyagarajan   Initial version
+################################################################################
+-->
+<xs:schema
+        targetNamespace="http://com/royalmail/subscriptions/webservice/requestAndResponse"
+        version="V1.1"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:cc="http://www.royalmailgroup.com/cm/common/V5"
+        xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+        xmlns:int="http://www.royalmailgroup.com/integration/core/V1"
+        xmlns:sub="http://com/royalmail/subscriptions/webservice/requestAndResponse">
+
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1"
+               schemaLocation="CommonIntegrationSchemaV1_15.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+               schemaLocation="DatatypesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/soap/extensions/V1"
+               schemaLocation="RMGSOAPExtensionsV1_4.xsd"/>
+
+    <xs:element name="requestRecurringPaymentsRequest">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Request Recurring Payments request.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="date" type="xs:date" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The date for which new Recurring Payment Orders are to be returned, based on Created Date(Valid format : YYYY-MM-DD).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="requestRecurringPaymentsResponse">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Request Recurring Payments response.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="date" type="xs:date">
+                    <xs:annotation>
+                        <xs:documentation>The date for which new Recurring Payment Orders are to be returned, based on Created Date(Valid format : YYYY-MM-DD).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="recurringPaymentsDetails" type="sub:recurringPaymentsDetailsType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="status">
+                    <xs:simpleType>
+                        <xs:restriction base="dt:identifier">
+                            <xs:enumeration value="OK">
+                                <xs:annotation>
+                                    <xs:documentation>Request Recurring Payments - request processed successfully.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="ERROR">
+                                <xs:annotation>
+                                    <xs:documentation>Request Recurring Payments - error during request processing.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="int:integrationFooter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="recurringPaymentsDetailsType">
+        <xs:annotation>
+            <xs:documentation>Details of a  Request Recurring Payments Response.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subscriptionId" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Id of the PSS Subscription.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="orderId" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Id of the PSS Order.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="grossTotalPrice" type="cc:amount" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The total gross price of the order.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="netTotalPrice" type="cc:amount" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The total net price of the order.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatTotalAmount" type="cc:amount" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The total amount of the order.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="orderStatus" minOccurs="1" nillable="false">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="Cart">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - Cart.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Checkout">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - Checkout.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PaymentPreAuthorisation">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - PaymentPreAuthorisation.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PaymentPreAuthorisationFailed">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - PaymentPreAuthorisationFailed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="RecurringPaymentSetup">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - RecurringPaymentSetup.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Fulfilment">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - Fulfilment.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="FulfilmentFailed">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - FulfilmentFailed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="CancelFailed">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - CancelFailed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PaymentSettlement">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - PaymentSettlement.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PaymentSettlementFailed">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - PaymentSettlementFailed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Fulfilled">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - Fulfilled.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="FullRefund">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - FullRefund.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PartialRefund">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - PartialRefund.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="RefundRequested">
+                            <xs:annotation>
+                                <xs:documentation>Order Status - RefundRequested.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="paymentDate" type="dt:dateTime" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The Timestamp when the Order record was settled (if it has been settled)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="createdDate" type="dt:dateTime" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The Timestamp when the Order record was created.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

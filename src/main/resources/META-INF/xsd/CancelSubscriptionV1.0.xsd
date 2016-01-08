@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#  Description:			Cancel Subscription SOAP service request and response definition
+#  Revision: 			1.0
+#  Date: 				30/09/2015
+#  Owner:				Mark Cornforth (RMG Enterprise Integration Architect)
+#  Canonical Model:	    Aligned with RMG Canonical Model (CM) v4.2
+################################################################################
+#  History:
+#  Version		Date 				Author					Description of Change
+#  v1.0	    	01/10/2015          Gayathri Thiyagarajan   Initial version
+################################################################################
+-->
+<xs:schema targetNamespace="http://com/royalmail/subscriptions/webservice/requestAndResponse" version="V1.1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+           xmlns:int="http://www.royalmailgroup.com/integration/core/V1">
+    
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1" schemaLocation="CommonIntegrationSchemaV1_15.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1" schemaLocation="DatatypesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/soap/extensions/V1" schemaLocation="RMGSOAPExtensionsV1_4.xsd"/>
+    
+    <xs:element name="cancelSubscriptionRequest">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Get Subscription request.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="subscriptionId" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Id of the PSS Subscription to cancel.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="cancelSubscriptionResponse">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Get Subscription response.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="subscriptionId" type="xs:nonNegativeInteger">
+                    <xs:annotation>
+                        <xs:documentation>Id of the cancelled PSS Subscription.</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="status">
+                    <xs:simpleType>
+                        <xs:restriction base="dt:identifier">
+                            <xs:enumeration value="OK">
+                                <xs:annotation>
+                                    <xs:documentation>Cancel Subscription - successful cancellation.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="ERROR">
+                                <xs:annotation>
+                                    <xs:documentation>Cancel Subscription - error while cancelling.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="int:integrationFooter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

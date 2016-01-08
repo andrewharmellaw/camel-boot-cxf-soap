@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#  Description:			Create Subscription SOAP service request and response definition
+#  Revision: 			1.0
+#  Date: 				08/09/2015
+#  Owner:				Royal Mail Group
+#  Canonical Model:	    Aligned with RMG Canonical Model (CM) v4.2
+################################################################################
+#  History:
+#  Version		Date 				Author					Description of Change
+#  v1.0	    	18/08/2015          Andrew Harmel-Law       Initial version
+#  v1.0         08/09/2015          Nick Walter             Move to CM v4.2
+################################################################################
+-->
+<xs:schema targetNamespace="http://com/royalmail/subscriptions/webservice/requestAndResponse" version="V1.1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+           xmlns:cc="http://www.royalmailgroup.com/cm/common/V5"
+           xmlns:int="http://www.royalmailgroup.com/integration/core/V1"
+           xmlns:sub="http://com/royalmail/subscriptions/webservice/requestAndResponse">
+
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1" schemaLocation="CommonIntegrationSchemaV1_15.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1" schemaLocation="DatatypesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/common/V5" schemaLocation="CommonClassesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/soap/extensions/V1" schemaLocation="RMGSOAPExtensionsV1_4.xsd"/>
+    
+    <xs:element name="createSubscriptionRequest">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Subscription creation request.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="createSubscriptionRequestDetails" type="sub:createSubscriptionRequestDetailsType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createSubscriptionResponse">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Subscription creation response.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="createSubscriptionResponseDetails" type="sub:createSubscriptionResponseDetailsType"/>
+                <xs:element ref="int:integrationFooter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="createSubscriptionResponseDetailsType">
+        <xs:annotation>
+            <xs:documentation>The response details from a CreateSubscription call.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="appOrderId" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>External application order id stored against the created subscription record.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="orderId" type="xs:nonNegativeInteger" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Id of the created PSS Order (if an initial one-off payment was required).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subscriptionId" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Id of the created PSS Subscription.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="OK">
+                            <xs:annotation>
+                                <xs:documentation>Subscription creation - successful completion.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ERROR">
+                            <xs:annotation>
+                                <xs:documentation>Subscription creation - error during creation processing.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="pssResponseUrl" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>The PSS response URL.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="pssToken" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>The PSS token.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="createSubscriptionRequestDetailsType">
+        <xs:annotation>
+            <xs:documentation>Details of a CreateSubscription Request.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="guid" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>A unique identifier for the customer (for SSO).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="electronicAddress" type="cc:digitalAddress">
+                <xs:annotation>
+                    <xs:documentation>The user's email address.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="productId" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>A PSS Product Id.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="appOrderId" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>External application order id to be stored against the subscription record.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subscriptionSpec" type="sub:subscriptionSpecType">
+                <xs:annotation>
+                    <xs:documentation>Specification for the subscription to be created.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="billingAddress" type="sub:addressType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Billing address details.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="checkoutCompleteUrl" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>Return URL for Checkout Complete. Link to complete checkout screen on the source application.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="updateOrderUrl" type="xs:anyURI">
+                <xs:annotation>
+                    <xs:documentation>Return URL for Modifying the Subscription. Link on the Back button.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="subscriptionSpecType">
+        <xs:annotation>
+            <xs:documentation>Parameters required when requesting a Subscription be created.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="typeOfSubscription">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="withInitialPayment">
+                            <xs:annotation>
+                                <xs:documentation>Subscription Type - with an initial payment.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="notWithInitialPayment">
+                            <xs:annotation>
+                                <xs:documentation>Subscription Type - with NO initial payment.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="frequency">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="weekly">
+                            <xs:annotation>
+                                <xs:documentation>Weekly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="monthly">
+                            <xs:annotation>
+                                <xs:documentation>Monthly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="quarterly">
+                            <xs:annotation>
+                                <xs:documentation>Quarterly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="yearly">
+                            <xs:annotation>
+                                <xs:documentation>Yearly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="initialPriceInformation" type="sub:priceInformationType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The initial pricing for the specified frequency. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="recurringPriceInformation" type="sub:priceInformationType">
+                <xs:annotation>
+                    <xs:documentation>The initial pricing for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="finalPriceInformation" type="sub:priceInformationType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The final pricing for the specified frequency. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="numberOfPayments" type="dt:ordinal" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Number of payments (for a fixed term Subscription only).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="startDate" type="dt:date">
+                <xs:annotation>
+                    <xs:documentation>The start date/seed date for recurring payments.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="endDate" type="dt:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The end date (for a fixed term Subscription only).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="data" type="sub:keyValuePairsType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Subscription Data (as a collection of key-value pairs) - full data to be published downstream.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="summary" type="sub:keyValuePairsType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Subscription Summary (as a collection of key-value pairs) - display data on Subscription Details and Manage Subscriptions.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="addressType">
+        <xs:annotation>
+            <xs:documentation>Address.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="fullName" type="dt:name" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The full name for the address. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="addressLine1" type="dt:description">
+                <xs:annotation>
+                    <xs:documentation>First line of the address. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="addressLine2" type="dt:description" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Second line of the address (optional).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="postTown" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>Post town. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="county" type="dt:name" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>County. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="postCode" type="dt:name" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Postcode. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="country" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>Two-letter ISO country code. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="priceInformationType">
+        <xs:sequence>
+            <xs:element name="grossPrice" type="cc:amount">
+                <xs:annotation>
+                    <xs:documentation>The gross price for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="netPrice" type="cc:amount">
+                <xs:annotation>
+                    <xs:documentation>The net price for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatAmount" type="cc:amount">
+                <xs:annotation>
+                    <xs:documentation>The VAT amount for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="keyValuePairsType">
+        <xs:annotation>
+            <xs:documentation>Type to describe one or more name/value pairs.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="keyValuePair" type="sub:keyValuePairType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="keyValuePairType">
+        <xs:annotation>
+            <xs:documentation>Type to describe a name/value pair.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="key" type="dt:name">
+                <xs:annotation>
+                    <xs:documentation>Name of the attribute.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="value" type="dt:identifier">
+                <xs:annotation>
+                    <xs:documentation>Value of the attribute.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
