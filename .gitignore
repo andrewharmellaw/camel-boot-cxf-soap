@@ -2,4 +2,6 @@ gradlew
 gradlew.bat
 build/*
 target/*
+gradle/*
+.gradle/*
 *.iml
