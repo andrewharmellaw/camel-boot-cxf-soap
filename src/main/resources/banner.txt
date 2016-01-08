@@ -1,0 +1,10 @@
+                              ,,                                                                                                ,,
+`7MM"""Yp,                  `7MM                                                   .g8"""bgd                                  `7MM     `7MM"""Yp,                     mm
+  MM    Yb                    MM                                                 .dP'     `M                                    MM       MM    Yb                     MM
+  MM    dP `7Mb,od8 ,6"Yb.    MMpMMMb.  `7MMpMMMb.pMMMb.   ,6"Yb.      gp gp     dM'       ` ,6"Yb.  `7MMpMMMb.pMMMb.  .gP"Ya   MM       MM    dP  ,pW"Wq.   ,pW"Wq.mmMMmm
+  MM"""bg.   MM' "'8)   MM    MM    MM    MM    MM    MM  8)   MM      "" ""     MM         8)   MM    MM    MM    MM ,M'   Yb  MM       MM"""bg. 6W'   `Wb 6W'   `Wb MM
+  MM    `Y   MM     ,pm9MM    MM    MM    MM    MM    MM   ,pm9MM                MM.         ,pm9MM    MM    MM    MM 8M""""""  MM mmmmm MM    `Y 8M     M8 8M     M8 MM
+  MM    ,9   MM    8M   MM    MM    MM    MM    MM    MM  8M   MM      ,, ,,     `Mb.     ,'8M   MM    MM    MM    MM YM.    ,  MM       MM    ,9 YA.   ,A9 YA.   ,A9 MM
+.JMMmmmd9  .JMML.  `Moo9^Yo..JMML  JMML..JMML  JMML  JMML.`Moo9^Yo.    db db       `"bmmmd' `Moo9^Yo..JMML  JMML  JMML.`Mbmmd'.JMML.   .JMMmmmd9   `Ybmd9'   `Ybmd9'  `Mbmo
+
+${application.title} ${application.formatted-version} :: ${spring-boot.formatted-version}

@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd   http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
+
+    <import resource="classpath:META-INF/cxf/cxf.xml" />
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+    <!-- Amazon API Create Indicia -->
+    <cxf:cxfEndpoint id="subscriptionSOAPService"
+                     address="/subscriptions/service/SubscriptionSOAPService"
+                     serviceClass="com.royalmail.subscriptions.webservice.envelope.SubscriptionsSOAPService">
+        <cxf:binding>
+            <soap:soapBinding version="1.2"/>
+        </cxf:binding>
+        <cxf:properties>
+            <entry key="dataFormat" value="PAYLOAD"/>
+        </cxf:properties>
+    </cxf:cxfEndpoint>
+    
+</beans>

@@ -1,0 +1,1024 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.royalmailgroup.com/cm/referenceData/V3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:rd="http://www.royalmailgroup.com/cm/referenceData/V3" xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1" version="V3.3">
+	<xs:annotation>
+		<xs:documentation>Package containing the set of code/description static data types used to categorize business facts. Reference Data represents finite value sets that are logically identified by the Type and Code. Codes are unique within a type. Codes are intelligent mnemonics i.e. US for United States etc.</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1" schemaLocation="DatatypesV4_2.xsd"/>
+	<xs:element name="consignmentType" type="rd:consignmentType"/>
+	<xs:complexType name="consignmentType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of consignment codes that can be used to identify a type of consignment. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="consignmentTypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uniquely identifies the type of Consignment. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="containerType" type="rd:containerType"/>
+	<xs:complexType name="containerType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of container codes that can be assigned to a type of container. e.g. york, mini york, bag, tray, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="containerTypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A code assigned to a type of container. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="dutyType" type="rd:dutyType"/>
+	<xs:complexType name="dutyType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of duty type codes that can be assigned to a type of duty. e.g. driver/vehicle duty or postie duty</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dutyTypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A code assigned to a type of duty.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="locationType" type="rd:locationType"/>
+	<xs:complexType name="locationType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of location types codes that can be assigned to a type of location. e.g. Customer Collection site, Customer delivery site, Functional Location, or a random place near M25 service station</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="locationTypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A unique list of location type codes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="vehicleType" type="rd:vehicleType"/>
+	<xs:complexType name="vehicleType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of vehicle types codes that can be assigned to a type of vehicle. These could be various </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="vehicleTypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A unique list of vehicle types codes </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="eventType" type="rd:eventType"/>
+	<xs:complexType name="eventType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of event types codes that can be assigned to a type of event. e.g. Engine Performance Event.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="eventCode" type="rd:referenceDataType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines a unique list of event types codes that can be assigned to a type of event. e.g. Engine Performance Event.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="routeType" type="rd:routeType"/>
+	<xs:complexType name="routeType">
+		<xs:annotation>
+			<xs:documentation>Defines a unique list of route types codes that can be assigned to a type of route. e.g. Walk route, Vehicle Route.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="routeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines a unique list of route types codes that can be assigned to a type of route. e.g. Walk route, Vehicle Route.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="deviceType" type="rd:deviceType"/>
+	<xs:complexType name="deviceType">
+		<xs:annotation>
+			<xs:documentation>Defines the different type of devices that may exist. e.g. tracker device and canbus are used in fleet. e.g. GPS Tracker, Canbus, PDA, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="deviceTypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the different type of devices that may exist. e.g. tracker device and canbus are used in fleet. e.g. GPS Tracker, Canbus, PDA, etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="workProcessType" type="rd:workProcessType"/>
+	<xs:complexType name="workProcessType">
+		<xs:annotation>
+			<xs:documentation>The mode of operation at the time the scan event was created. Eg. Outward Small primary</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="workProcessCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The mode of operation at the time the scan event was created. Eg. Outward Small primary</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="systemNameType" type="rd:systemNameType"/>
+	<xs:complexType name="systemNameType">
+		<xs:annotation>
+			<xs:documentation>The official RMG system name is the commonly used name for a system and will be more business oriented than a numerical identifier. An example would the Traffic and Revenue Reporting System.  </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="systemNameCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The official RMG system name is the commonly used name for a system and will be more business oriented than a numerical identifier. An example would the Traffic and Revenue Reporting System. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PARSDepthType" type="rd:PARSDepthType"/>
+	<xs:complexType name="PARSDepthType">
+		<xs:annotation>
+			<xs:documentation>The depth of resolution required for the mail piece</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PARSDepthCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The depth of resolution required for the mail piece</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="countyType" type="rd:countyType"/>
+	<xs:complexType name="countyType">
+		<xs:annotation>
+			<xs:documentation>A territorial division exercising administrative, judicial, and political functions.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="countyCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A territorial division exercising administrative, judicial, and political functions.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="destinationType" type="rd:destinationType"/>
+	<xs:complexType name="destinationType">
+		<xs:annotation>
+			<xs:documentation>Destination Code used by (OBA) SAP to Bill the correct postage price on the Customer's Account.  This field varies per destination </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dimensionCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies the type of dimension recorded for the Mail Item
+0 – Not Declared
+1 – Exact
+2 – Best Fit
+3 – Approximate
+More values will be added with future requirements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="returnToSenderType" type="rd:returnToSenderType"/>
+	<xs:complexType name="returnToSenderType">
+		<xs:annotation>
+			<xs:documentation>Identifies the level of RTS service that is being requested</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="returnToSenderCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identifies the level of RTS service that is being requested</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="workingDayType" type="rd:workingDayType"/>
+	<xs:complexType name="workingDayType">
+		<xs:annotation>
+			<xs:documentation>Working Day Type contains the set of Types of working days. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="workingDayCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Working Day Type contains the set of Types of working days. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="infeedOperationalMailstreamType" type="rd:infeedOperationalMailstreamType"/>
+	<xs:complexType name="infeedOperationalMailstreamType">
+		<xs:annotation>
+			<xs:documentation>The category of the selected operational mailstream using data value from the operational mailstream file</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="infeedOperationalMailstreamCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The category of selected operational mailstream using data value from the operational mailstream file </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="termsOfDeliveryType" type="rd:termsOfDeliveryType"/>
+	<xs:complexType name="termsOfDeliveryType">
+		<xs:annotation>
+			<xs:documentation>International Commercial Terms, 3 Letter Trade Terms, Commercial Invoice Purposes</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="termsOfDeliveryCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>International Commercial Terms, 3 Letter Trade Terms, Commercial Invoice Purposes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="tariffHarmonisationType" type="rd:tariffHarmonisationType"/>
+	<xs:complexType name="tariffHarmonisationType">
+		<xs:annotation>
+			<xs:documentation>Key Words, refers to the HS Tariff code and Descriptions, the Description bit
+
+HS tariff code and Descriptions are the international standards of numbers and names to classify traded products
+
+Used for International Shipments (EU and outside EU)
+
+Sample
+
+Live animals; animal products
+01
+Live animals
+02
+Meat and edible meat offal
+03
+Fish and crustaceans, molluscs and other aquatic invertebrates
+04
+Dairy produce; birds' eggs; natural honey; edible products of animal origin, not elsewhere specified or included
+05
+Products of animal origin, not elsewhere specified or included</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tariffHarmonisationCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Key Words, refers to the HS Tariff code and Descriptions, the Description bit
+
+HS tariff code and Descriptions are the international standards of numbers and names to classify traded products
+
+Used for International Shipments (EU and outside EU)
+
+Sample
+
+Live animals; animal products
+01
+Live animals
+02
+Meat and edible meat offal
+03
+Fish and crustaceans, molluscs and other aquatic invertebrates
+04
+Dairy produce; birds' eggs; natural honey; edible products of animal origin, not elsewhere specified or included
+05
+Products of animal origin, not elsewhere specified or included</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="titleType" type="rd:titleType"/>
+	<xs:complexType name="titleType">
+		<xs:annotation>
+			<xs:documentation>Defines the prefix of a name</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="titleCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the prefix of a name</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nameSuffixType" type="rd:nameSuffixType"/>
+	<xs:complexType name="nameSuffixType">
+		<xs:annotation>
+			<xs:documentation>Defines the suffix of a name i.e. Jnr, Esq etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nameSuffixCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the suffix of a name i.e. Jnr, Esq etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="addressUsageType" type="rd:addressUsageType"/>
+	<xs:complexType name="addressUsageType">
+		<xs:annotation>
+			<xs:documentation>This denotes the function the address plays (i.e. it is a primary address, seasonal, etc). </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="addressUsageCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This denotes the function the address plays (i.e. it is a primary address, seasonal, etc). </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="barcodeInformationType" type="rd:barcodeInformationType"/>
+	<xs:complexType name="barcodeInformationType">
+		<xs:annotation>
+			<xs:documentation>Identifies the RMG barcode payload for each product type. For example, ‘4’ - OLP-Consumer Services Channels</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="barcodeInformationCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identifies the RMG barcode payload for each product type. For example, ‘4’ -  OLP-Consumer Services Channels</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="weightType" type="rd:weightType"/>
+	<xs:complexType name="weightType">
+		<xs:annotation>
+			<xs:documentation>Specifies the type of weight entered:
+0 – Not applicable
+1 – Exact
+2 – No more than (e.g. top band limit, or highest estimate)
+3 – Average</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="weightCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies the type of weight entered:
+0 – Not applicable
+1 – Exact
+2 – No more than (e.g. top band limit, or highest estimate)
+3 – Average </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="dayOfWeekType" type="rd:dayOfWeekType"/>
+	<xs:complexType name="dayOfWeekType">
+		<xs:annotation>
+			<xs:documentation>Day of week i.e. Monday, Tuesday etc</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="dayOfWeekCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Day of week.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="unitOfMeasureType" type="rd:unitOfMeasureType"/>
+	<xs:complexType name="unitOfMeasureType">
+		<xs:annotation>
+			<xs:documentation>A unitOfMeasure represents is a definite magnitude of a physical quantity, defined and adopted by convention or by law, that is used as a standard for measurement of the same physical quantity. Any other value of the physical quantity can be expressed as a simple multiple of the unit of measure. For example, length is a physical quantity. The metre is a unit of length that represents a definite predetermined length. When we say 10 metres, we actually mean 10 times the definite predetermined length called “metre”.  </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="unitOfMeasureCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A unitOfMeasure represents is a definite magnitude of a physical quantity, defined and adopted by convention or by law, that is used as a standard for measurement of the same physical quantity. Any other value of the physical quantity can be expressed as a simple multiple of the unit of measure. For example, length is a physical quantity. The metre is a unit of length that represents a definite predetermined length. When we say 10 metres, we actually mean 10 times the definite predetermined length called “metre”.  </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="postageSizeType" type="rd:postageSizeType"/>
+	<xs:complexType name="postageSizeType">
+		<xs:annotation>
+			<xs:documentation>Defines the different sizes of letters or parcels</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="postageSizeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the different sizes of letters and parcels</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="recordType" type="rd:recordType"/>
+	<xs:complexType name="recordType">
+		<xs:annotation>
+			<xs:documentation>Defines the different types of record.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="recordCode" type="rd:referenceDataType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code is used as a nonunique identifier for an instance of a Record Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="taxType" type="rd:taxType"/>
+	<xs:complexType name="taxType">
+		<xs:annotation>
+			<xs:documentation>Defines the different types of tax i.e. VAT, Income, Corporate etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taxCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the different types of tax i.e. VAT, Income, Corporate etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="requiredAtDeliveryType" type="rd:requiredAtDeliveryType"/>
+	<xs:complexType name="requiredAtDeliveryType">
+		<xs:annotation>
+			<xs:documentation>Identifies whether this is a product/ service that requires a signature or for which ID is required.
+S – Signature required
+I – ID required (not in use, a future requirement)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="requiredAtDeliveryCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identifies whether this is a product/ service that requires a signature or for which ID is required.
+S – Signature required
+I – ID required (not in use, a future requirement)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="businessFunctionType" type="rd:businessFunctionType"/>
+	<xs:complexType name="businessFunctionType">
+		<xs:annotation>
+			<xs:documentation>A categorization of processes, people and resources organized in such a way as to produce a business outcome</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="businessFunctionCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A categorization of processes, people and resources organized in such a way as to  produce a business outcome</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="referenceDataType" type="rd:referenceDataType"/>
+	<xs:complexType name="referenceDataType">
+		<xs:annotation>
+			<xs:documentation>The reference data class gives a common structure which will be adopted for all generic reference data. Reference data tends to be 'Qualifier' data (referenced in the data standards document on Sharepoint). For example the expression Product Short Name; 'Short' in this instance is the qualifier and could have a corresponding set of reference values that could be used. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="dt:identifier" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code is used as a nonunique identifier for an instance of a Reference Data Value i.e. US.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="dt:description" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A description or the reference data item. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="identifier" type="dt:identifier" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>~Unique identifier for a Reference Data instance.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="dt:longName" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Name assorted with the code i.e. Name - United States for Code - US.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PARSResultSourceType" type="rd:PARSResultSourceType"/>
+	<xs:complexType name="PARSResultSourceType">
+		<xs:annotation>
+			<xs:documentation>Identifies if Mail Piece has been address keyed or OCR or combination</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PARSResultSourceCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The classification of rejected mail pieces. The reason an item was ejected from the machine before sortation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="stateOrProvinceType" type="rd:stateOrProvinceType"/>
+	<xs:complexType name="stateOrProvinceType">
+		<xs:annotation>
+			<xs:documentation>This is used specifically for international items only and is applicable for the US, Canada, Australia, etc. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="stateOrProvinceCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is used specifically for international items only and is applicable for the US, Canada, Australia, etc. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="statusType" type="rd:statusType"/>
+	<xs:complexType name="statusType">
+		<xs:annotation>
+			<xs:documentation>This is the state of an entity (i.e. it is active, approved, draft, inactive, etc). The sequence of states an entity passes through define the entity life history.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="statusCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>This is the state of an entity (i.e. it is active, approved, draft, inactive, etc).  The sequence of states an entity passes through define the entity life history.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="natureOfMailPieceType" type="rd:natureOfMailPieceType"/>
+	<xs:complexType name="natureOfMailPieceType">
+		<xs:annotation>
+			<xs:documentation>“G” for Gift
+“S” for Commercial Sample
+"D" for Documents
+"R" for Returned Goods
+"O" for Other</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="natureOfMailPieceCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>“G” for Gift
+“S” for Commercial Sample
+"D" for Documents
+"R" for Returned Goods
+"O" for Other</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="sortSelectionDestinationType" type="rd:sortSelectionDestinationType"/>
+	<xs:complexType name="sortSelectionDestinationType">
+		<xs:annotation>
+			<xs:documentation>The location to where the Parcel has been sorted to represented as an OBID</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sortSelectionDestinationCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The location to where the Parcel has been sorted to represented as an OBID</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="fileType" type="rd:fileType"/>
+	<xs:complexType name="fileType">
+		<xs:annotation>
+			<xs:documentation>Defines the different types of file</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="fileCode" type="rd:referenceDataType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code is used as a nonunique identifier for an instance of a file Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="serviceOfferingType" type="rd:serviceOfferingType"/>
+	<xs:complexType name="serviceOfferingType">
+		<xs:annotation>
+			<xs:documentation>Defines the type of offering/product (with specific parameters) which may be sold to a customer.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceOfferingCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the type of offering/product (with specific parameters) which may be sold to a customer. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="calendarType" type="rd:calendarType"/>
+	<xs:complexType name="calendarType">
+		<xs:annotation>
+			<xs:documentation>Defines a calendar as being Fiscal, Operational, Quality or Calendar</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="calendarCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines a calendar as being Fiscal, Operational, Quality or Calendar.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PARSPriorityType" type="rd:PARSPriorityType"/>
+	<xs:complexType name="PARSPriorityType">
+		<xs:annotation>
+			<xs:documentation>Priority for Keying</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PARSPriorityCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Priority for Keying</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mailPieceFormatType" type="rd:mailPieceFormatType"/>
+	<xs:complexType name="mailPieceFormatType">
+		<xs:annotation>
+			<xs:documentation>The format (RM Letters or International) of the Mail Item.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mailItemFormatCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The format (RM Letters or International) of the Mail Item.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="geospatialPositionType" type="rd:geospatialPositionType"/>
+	<xs:complexType name="geospatialPositionType">
+		<xs:annotation>
+			<xs:documentation>Gives context to a Geo Spatial Position i.e. front door, back door, Post Box.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="geospatialPositionCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Gives context to a Geo Spatial Position i.e. front door, back door, Post Box.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="routeRequestType" type="rd:routeRequestType"/>
+	<xs:complexType name="routeRequestType">
+		<xs:annotation>
+			<xs:documentation>This message is used to request route manifest, walk map or a hazard list. The delivery hazard list is not currently used.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="routeRequestCode" type="rd:referenceDataType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The code is used as a non unique identifier for an instance of a Route Request Type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="functionalLocationSubType" type="rd:functionalLocationSubType"/>
+	<xs:complexType name="functionalLocationSubType">
+		<xs:annotation>
+			<xs:documentation>Defines the Functional Location at the lowest level in terms of airport, seaport, rail hub etc</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="functionalLocationSubtypeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the Functional Location at the lowest level in terms of airport, seaport, rail hub etc</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="sortOutcomeType" type="rd:sortOutcomeType"/>
+	<xs:complexType name="sortOutcomeType">
+		<xs:annotation>
+			<xs:documentation>The type of sort selection identified by the sort plan for the output the parcel was sorted to</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="sortOutcomeCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The type of sort selection identified by the sort plan for the output the parcel was sorted to</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="contactMethodType" type="rd:contactMethodType"/>
+	<xs:complexType name="contactMethodType">
+		<xs:annotation>
+			<xs:documentation>Contains the communication methods. Communication methods include telephone or email.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactMethodCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Means of communication, telephone, email, etc</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="dimensionType" type="rd:dimensionType"/>
+	<xs:complexType name="dimensionType">
+		<xs:annotation>
+			<xs:documentation>Specifies the type of dimension recorded for the Mail Item
+0 – Not Declared
+1 – Exact
+2 – Best Fit
+3 – Approximate
+More values will be added with future requirements.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dimensionCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies the type of dimension recorded for the Mail Item
+0 – Not Declared
+1 – Exact
+2 – Best Fit
+3 – Approximate
+More values will be added with future requirements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="dateFormatType" type="rd:dateFormatType"/>
+	<xs:complexType name="dateFormatType">
+		<xs:annotation>
+			<xs:documentation>Defines a preferred format for a datetime value.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="dateFormatCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines a preferred format for a datetime value.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="processingFunctionType" type="rd:processingFunctionType"/>
+	<xs:complexType name="processingFunctionType">
+		<xs:annotation>
+			<xs:documentation>Describes if scan is inbound or outbound processing (unless we can tell always with Event ID)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="processingFunctionCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Describes if scan is inbound or outbound processing (unless we can tell always with Event ID)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="functionalLocationType" type="rd:functionalLocationType"/>
+	<xs:complexType name="functionalLocationType">
+		<xs:annotation>
+			<xs:documentation>Defines the type of Functional Location such as Region, Network Hub, Delivery Hub etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="functionalLocationCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the type of Functional Location such as Region, Network Hub, Delivery Hub etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="channelType" type="rd:channelType"/>
+	<xs:complexType name="channelType">
+		<xs:annotation>
+			<xs:documentation>Defines the types of channel used by customers. Identifies the source channel for pre advice. This must be the same as the channel identifier(s) in the item record(s), i.e. a pre advice must only contain items from one channel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="channelCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Uniquely identifies the source channel for pre advice. This must be the same as the channel identifier(s) in the item record(s), i.e. a pre advice must only contain items from one channel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mailClassType" type="rd:mailClassType"/>
+	<xs:complexType name="mailClassType">
+		<xs:annotation>
+			<xs:documentation>Reference data identifying the class of mail service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mailClassCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference data identifying the class of mail service.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="serviceFormatType" type="rd:serviceFormatType"/>
+	<xs:complexType name="serviceFormatType">
+		<xs:annotation>
+			<xs:documentation>Defines the format of the Service being offered. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceFormatCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the format of the Service being offered.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="reasonType" type="rd:reasonType"/>
+	<xs:complexType name="reasonType">
+		<xs:annotation>
+			<xs:documentation>The classification of records by reason.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="reasonCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The classification of rejected mail pieces. The reason an item was ejected from the machine before sortation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nonWorkingDayType" type="rd:nonWorkingDayType"/>
+	<xs:complexType name="nonWorkingDayType">
+		<xs:annotation>
+			<xs:documentation>Non Working Day object contains all the planned non-working days. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nonWorkingDayCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Non Working Day object contains all the planned non-working days i.e. Bank Holiday, Local Holiday.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="bFPOFormatType" type="rd:bFPOFormatType"/>
+	<xs:complexType name="bFPOFormatType">
+		<xs:annotation>
+			<xs:documentation>Reference data identifying the format of British Forces Posting Overseas Mail Items</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="bFPOFormatCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Reference data identifying the Format of British Forces Posting Overseas Mail Items</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="productGroupType" type="rd:productGroupType"/>
+	<xs:complexType name="productGroupType">
+		<xs:annotation>
+			<xs:documentation>Service Offering/Service Occurrence</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="productGroupCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Service Offering/Service Occurrence</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="serviceEnhancementType" type="rd:serviceEnhancementType"/>
+	<xs:complexType name="serviceEnhancementType">
+		<xs:annotation>
+			<xs:documentation>Defines the type of enhancement used to add to an offering/product (with specific parameters) which may be sold to a customer.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="serviceEnhancementCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the type of enhancement used to add to an offering/product (with specific parameters) which may be sold to a customer.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="trackedEventType" type="rd:trackedEventType"/>
+	<xs:complexType name="trackedEventType">
+		<xs:annotation>
+			<xs:documentation>Defines the type of Tracked Event. The level of compliance to specification the item has received</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="trackedEventCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the type of Tracked Event. The level of compliance to specification the item has received</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="currencyType" type="rd:currencyType"/>
+	<xs:complexType name="currencyType">
+		<xs:annotation>
+			<xs:documentation>The currency code for the taxonomy is used to indicate the system of money (monetary units) in common use, especially in a nation. Under this definition, British pounds, U.S. dollars, and European euros are different types of currency, or currencies. Currencies in the sense used by foreign exchange markets, are defined by governments, and each type has limited boundaries of acceptance.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="currencyCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Currency code is used to indicate the system of money (monetary units) in common use within a nation. Under this definition, British pounds, U.S. dollars, and European euros are different types of currency, or currencies. Currencies in the sense used by foreign exchange markets, are defined by governments, and each type has limited boundaries of acceptance.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="functionalLocationGroupType" type="rd:functionalLocationGroupType"/>
+	<xs:complexType name="functionalLocationGroupType">
+		<xs:annotation>
+			<xs:documentation>Specifies if the type  of Functional Location group</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="functionalLocationGroupCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Specifies the Functional Location Group type</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="countryType" type="rd:countryType"/>
+	<xs:complexType name="countryType">
+		<xs:annotation>
+			<xs:documentation>A Country as recognised by the International Standards Organisation.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="countryCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A Country as recognised by the International Standards Organisation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="nameType" type="rd:nameType"/>
+	<xs:complexType name="nameType">
+		<xs:annotation>
+			<xs:documentation>Defines the type of name in terms of being Primary, Alias or Nickname</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nameCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the type of name in terms of being Primary, Alias or Nickname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="imagePerspectiveType" type="rd:imagePerspectiveType"/>
+	<xs:complexType name="imagePerspectiveType">
+		<xs:annotation>
+			<xs:documentation>Identifies the image used to resolve the address for the item, in the range 1 -6</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="imagePerspectiveCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Identifies the image used to resolve the address for the item, in the range 1 -6</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="durationType" type="rd:durationType"/>
+	<xs:complexType name="durationType">
+		<xs:annotation>
+			<xs:documentation>Defines a type of time period i.e. weekly, monthly, quarterly, annually etc</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="durationCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines a type of time period i.e. weekly, monthly, quarterly, annually etc</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mailType" type="rd:mailType"/>
+	<xs:complexType name="mailType">
+		<xs:annotation>
+			<xs:documentation>The category of mail according to the purpose of the communication between poster and receiver i.e. Marketing, Banking, Direct Mail</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mailCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>The category of mail according to the purpose of the communication between poster and receiver i.e. Marketing, Banking, Direct Mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="mailPieceType" type="rd:mailPieceType"/>
+	<xs:complexType name="mailPieceType">
+		<xs:annotation>
+			<xs:documentation>Reference data. A classification of the mail by the nature of its contents i.e.
+01 = DGZ
+02 = MER
+03= DOC
+Indicative values, not in use at the moment)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mailPieceCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>A classification of the mail by the nature of its contents i.e.
+01 = DGZ
+02 = MER
+03= DOC
+Indicative values, not in use at the moment)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="tariffType" type="rd:tariffType"/>
+	<xs:complexType name="tariffType">
+		<xs:annotation>
+			<xs:documentation>Class set by the output of the LPSS/PPM tariff function</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="tariffCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Class set by the output of the LPSS/PPM tariff function</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="contactUsageType" type="rd:contactUsageType"/>
+	<xs:complexType name="contactUsageType">
+		<xs:annotation>
+			<xs:documentation>Usage associated with a contact method i.e. business, social etc</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactUsageCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Usage associated with a contact method i.e. business, social etc</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="roleType" type="rd:roleType"/>
+	<xs:complexType name="roleType">
+		<xs:annotation>
+			<xs:documentation>Defines the different roles which a party may fulfil.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="roleCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the different roles a party may fulfil.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="functionalLocationRelationshipType" type="rd:functionalLocationRelationshipType"/>
+	<xs:complexType name="functionalLocationRelationshipType">
+		<xs:annotation>
+			<xs:documentation>Defines the Functional Location Group Relationship in terms of PCA, Parent, Operational, Management etc</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="functionalLocationRelationCode" type="rd:referenceDataType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Defines the Functional Location Group Relationship in terms of PCA, Parent, Operational, Management etc</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

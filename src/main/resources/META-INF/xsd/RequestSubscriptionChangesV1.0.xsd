@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#  Description:			Request Subscription Changes SOAP service request and response definition
+#  Revision: 			1.0
+#  Date: 				19/10/2015
+#  Owner:				Mark Cornforth (RMG Enterprise Integration Architect)
+#  Canonical Model:	    Aligned with RMG Canonical Model (CM) v4.2
+################################################################################
+#  History:
+#  Version		Date 				Author					Description of Change
+#  v1.0	    	19/10/2015          Gayathri Thiyagarajan   Initial version
+################################################################################
+-->
+<xs:schema
+        targetNamespace="http://com/royalmail/subscriptions/webservice/requestAndResponse"
+        version="V1.1"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+        xmlns:int="http://www.royalmailgroup.com/integration/core/V1"
+        xmlns:sub="http://com/royalmail/subscriptions/webservice/requestAndResponse">
+
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1"
+               schemaLocation="CommonIntegrationSchemaV1_15.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+               schemaLocation="DatatypesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/soap/extensions/V1"
+               schemaLocation="RMGSOAPExtensionsV1_4.xsd"/>
+
+    <xs:element name="requestSubscriptionChangesRequest">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Request Subscription Changes request.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="date" type="xs:date" minOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>The date for which changes (cancellations and changes to recurring payment date) are to be returned (Valid format : YYYY-MM-DD).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="requestSubscriptionChangesResponse">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Request Subscription Changes response.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="date" type="xs:date">
+                    <xs:annotation>
+                        <xs:documentation>The date for which changes (cancellations and changes to recurring payment date) are to be returned (Valid format : YYYY-MM-DD).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="subscriptionChangesDetails" type="sub:subscriptionChangesDetailsType" minOccurs="1" maxOccurs="unbounded"/>
+                <xs:element name="status">
+                    <xs:simpleType>
+                        <xs:restriction base="dt:identifier">
+                            <xs:enumeration value="OK">
+                                <xs:annotation>
+                                    <xs:documentation>Request Subscription Changes- request processed successfully.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                            <xs:enumeration value="ERROR">
+                                <xs:annotation>
+                                    <xs:documentation>Request Subscription Changes - error during request processing.</xs:documentation>
+                                </xs:annotation>
+                            </xs:enumeration>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="int:integrationFooter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="subscriptionChangesDetailsType">
+        <xs:annotation>
+            <xs:documentation>Details of a Request Subscription Changes Response.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subscriptionId" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Id of the PSS Subscription.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="subscriptionStatus">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="Initialised">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - Initialised.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PreSetupFailed">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - PreSetupFailed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="PreSetup">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - PreSetup.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ActivateFailed">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - ActivateFailed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Active">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - Active.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ActiveCancelled">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - ActiveCancelled.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="Closed">
+                            <xs:annotation>
+                                <xs:documentation>Subscription status - Closed.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="nextPaymentDate" type="xs:date">
+                <xs:annotation>
+                    <xs:documentation>Set to the derived paidUpToDate(Valid format : YYYY-MM-DD)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

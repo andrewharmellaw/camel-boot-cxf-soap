@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################################
+#  Description:			Upgrade or Downgrade Subscription SOAP service request and response definition
+#  Revision: 			1.0
+#  Date: 				19/09/2015
+#  Owner:				Royal Mail Group
+#  Canonical Model:	    Aligned with RMG Canonical Model (CM) v4.2
+################################################################################
+#  History:
+#  Version		Date 				Author					Description of Change
+#  v1.0	    	18/08/2015          Gayathri Thiyagarajan   Initial version
+################################################################################
+-->
+<xs:schema targetNamespace="http://com/royalmail/subscriptions/webservice/requestAndResponse" version="V1.1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:dt="http://www.royalmailgroup.com/cm/rmDatatypes/V1"
+           xmlns:cc="http://www.royalmailgroup.com/cm/common/V5"
+           xmlns:int="http://www.royalmailgroup.com/integration/core/V1"
+           xmlns:sub="http://com/royalmail/subscriptions/webservice/requestAndResponse">
+
+    <xs:import namespace="http://www.royalmailgroup.com/integration/core/V1" schemaLocation="CommonIntegrationSchemaV1_15.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/rmDatatypes/V1" schemaLocation="DatatypesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/cm/common/V5" schemaLocation="CommonClassesV4_2.xsd"/>
+    <xs:import namespace="http://www.royalmailgroup.com/soap/extensions/V1" schemaLocation="RMGSOAPExtensionsV1_4.xsd"/>
+    
+    <xs:element name="upgradeDowngradeSubscriptionRequest">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Subscription Upgrade or Downgrade request.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="upgradeDowngradeSubscriptionRequestDetails" type="sub:upgradeDowngradeSubscriptionRequestDetailsType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="upgradeDowngradeSubscriptionResponse">
+        <xs:complexType>
+            <xs:annotation>
+                <xs:documentation>Overall definition for a Subscription Upgrade or Downgrade response.</xs:documentation>
+            </xs:annotation>
+            <xs:sequence>
+                <xs:element ref="int:integrationHeader"/>
+                <xs:element name="upgradeDowngradeSubscriptionResponseDetails" type="sub:upgradeDowngradeSubscriptionResponseDetailsType"/>
+                <xs:element ref="int:integrationFooter"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="upgradeDowngradeSubscriptionResponseDetailsType">
+        <xs:annotation>
+            <xs:documentation>The response details from a Upgrade or Downgrade Subscription call.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subscriptionId" type="xs:nonNegativeInteger">
+                <xs:annotation>
+                    <xs:documentation>Id of the upgraded or downgraded PSS Subscription.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="status">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="OK">
+                            <xs:annotation>
+                                <xs:documentation>Subscription upgrade or downgrade - successful upgrade or downgrade.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="ERROR">
+                            <xs:annotation>
+                                <xs:documentation>Subscription upgrade or downgrade - error during upgrade or downgrade processing.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="upgradeDowngradeSubscriptionRequestDetailsType">
+        <xs:annotation>
+            <xs:documentation>Details of a Upgrade or Downgrade Subscription Request.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="subscriptionId" type="xs:nonNegativeInteger" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Id of the PSS Subscription to upgrade or downgrade.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="productId" type="xs:nonNegativeInteger" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A PSS Product Id.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="recurringPriceInformation" type="sub:priceInfoType" minOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The initial pricing for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="finalPriceInformation" type="sub:priceInfoType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The final pricing for the specified frequency. (Optional.)</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="frequency" minOccurs="1">
+                <xs:simpleType>
+                    <xs:restriction base="dt:identifier">
+                        <xs:enumeration value="weekly">
+                            <xs:annotation>
+                                <xs:documentation>Weekly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="monthly">
+                            <xs:annotation>
+                                <xs:documentation>Monthly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="quarterly">
+                            <xs:annotation>
+                                <xs:documentation>Quarterly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                        <xs:enumeration value="yearly">
+                            <xs:annotation>
+                                <xs:documentation>Yearly payment frequency.</xs:documentation>
+                            </xs:annotation>
+                        </xs:enumeration>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="endDate" type="dt:date" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The end date (for a fixed term Subscription only).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="numberOfPayments" type="dt:ordinal" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Number of payments (for a fixed term Subscription only).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="priceInfoType">
+        <xs:sequence>
+            <xs:element name="grossPrice" type="cc:amount">
+                <xs:annotation>
+                    <xs:documentation>The gross price for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="netPrice" type="cc:amount">
+                <xs:annotation>
+                    <xs:documentation>The net price for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatAmount" type="cc:amount">
+                <xs:annotation>
+                    <xs:documentation>The VAT amount for the specified frequency.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
