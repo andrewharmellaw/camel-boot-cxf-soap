@@ -6,3 +6,8 @@ gradle/*
 .gradle/*
 *.iml
 .idea/*
+.classpath
+.project
+.settings/
+bin/
+

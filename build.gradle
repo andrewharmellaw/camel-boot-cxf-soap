@@ -25,7 +25,7 @@ apply plugin: 'spring-boot'
 apply plugin: 'no.nils.wsdl2java'
 
 jar {
-    baseName = 'camel-boot'
+    baseName = 'camel-boot-cxf-soap'
     version =  '0.1.0-SNAPSHOT'
 }
 
