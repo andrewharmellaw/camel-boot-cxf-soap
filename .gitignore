@@ -1,13 +1,20 @@
+### Gradle artifacts
 gradlew
 gradlew.bat
 build/*
 target/*
 gradle/*
 .gradle/*
+
+###IntelliJ project artifacts
 *.iml
 .idea/*
+
+### Eclipse project artifacts
 .classpath
 .project
 .settings/
 bin/
 
+/.gradle/
+/build/
