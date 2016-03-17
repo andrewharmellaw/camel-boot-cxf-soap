@@ -71,6 +71,8 @@ dependencies {
 
 configurations {
     compile.exclude(module: 'spring-boot-starter-tomcat')
+    compile.exclude(module: 'spring-webmvc')
+    compile.exclude(module: 'commons-logging')
 }
 
 springBoot {
