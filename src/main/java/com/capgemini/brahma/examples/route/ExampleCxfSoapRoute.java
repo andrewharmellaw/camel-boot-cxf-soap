@@ -1,19 +1,18 @@
 package com.capgemini.brahma.examples.route;
 
+import com.capgemini.brahma.config.CxfSoapRouteBuilder;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExampleCxfSoapRoute extends RouteBuilder {
+public class ExampleCxfSoapRoute extends CxfSoapRouteBuilder {
 
     @Override
     public void configure() throws Exception {
 
-        // TODO: Pull this bit into an abstract superclass - a CxfSoapRouteBuilder class
-        from("cxf:bean:routerEndpoint")
-                .to("cxf:bean:serviceEndpoint");
+        super.configure();
 
         from("cxf:bean:serviceEndpoint")
                 .to("log:info")
