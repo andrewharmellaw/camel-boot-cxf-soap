@@ -50,7 +50,8 @@ public class MyAppConfig {
         return configurer;
     }
     
-    int loadOnStartup = 1;
+    private static int loadOnStartup = 1;
+    
     @Bean
     public ServletRegistrationBean cxfServlet(){
     	ServletRegistrationBean servlet = new ServletRegistrationBean(new CXFServlet(),"/services/");
