@@ -1,5 +1,6 @@
 package com.capgemini.brahma.examples.route;
 
+import com.capgemini.brahma.config.CxfSoapRouteBuilder;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
@@ -12,9 +13,7 @@ public class ExampleCxfSoapRoute extends CxfSoapRouteBuilder {
 
 		super.configure();
 
-		from("cxf:bean:serviceEndpoint")
-			.to("log:info")
-			.process(new Processor() {
+		from("cxf:bean:serviceEndpoint").to("log:info").process(new Processor() {
 			@SuppressWarnings("unchecked")
 			public void process(final Exchange exchange) throws Exception {
 				exchange.getOut().setBody("THIS IS A CANNED RESPONSE PAYLOAD");
