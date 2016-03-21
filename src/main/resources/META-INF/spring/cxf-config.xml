@@ -8,10 +8,10 @@
 
     <cxf:cxfEndpoint id="routerEndpoint"
                      address="http://localhost:9003/CamelContext/RouterPort"
-                     serviceClass="com.royalmail.subscriptions.webservice.envelope.SubscriptionsSOAPService_Service"/>
+                     serviceClass="com.javacodegeeks.ws.product_service.ProductService"/>
     <cxf:cxfEndpoint id="serviceEndpoint"
                      address="http://localhost:9000/SoapContext/SoapPort"
-                     serviceClass="com.royalmail.subscriptions.webservice.envelope.SubscriptionsSOAPService">
+                     serviceClass="com.javacodegeeks.ws.product_service.ProductService">
         <cxf:binding>
             <soap:soapBinding version="1.2"/>
         </cxf:binding>
@@ -20,5 +20,5 @@
         </cxf:properties>
 
     </cxf:cxfEndpoint>
-    
+
 </beans>
