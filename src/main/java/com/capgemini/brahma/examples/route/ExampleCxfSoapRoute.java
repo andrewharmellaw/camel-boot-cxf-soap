@@ -4,8 +4,6 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.springframework.stereotype.Component;
 
-import com.capgemini.brahma.config.CxfSoapRouteBuilder;
-
 @Component
 public class ExampleCxfSoapRoute extends CxfSoapRouteBuilder {
 

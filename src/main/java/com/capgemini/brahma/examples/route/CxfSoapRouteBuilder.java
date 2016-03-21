@@ -1,4 +1,4 @@
-package com.capgemini.brahma.config;
+package com.capgemini.brahma.examples.route;
 
 import org.apache.camel.builder.RouteBuilder;
 
