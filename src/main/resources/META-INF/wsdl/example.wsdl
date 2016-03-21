@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="wsdl-first"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.javacodegeeks.com/product-service"
+                  xmlns:typens="http://ws.javacodegeeks.com/product-service/types"
+                  targetNamespace="http://ws.javacodegeeks.com/product-service">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://ws.javacodegeeks.com/product-service/types">
+            <xsd:element name="productRequest">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="productResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="id" type="xsd:string"/>
+                        <xsd:element name="description" type="xsd:string"/>
+                        <xsd:element name="price" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="error">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" name="reason" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="ProductRequest">
+        <wsdl:part name="request" element="typens:productRequest"/>
+    </wsdl:message>
+    <wsdl:message name="ProductResponse">
+        <wsdl:part name="response" element="typens:productResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ErrorMessage">
+        <wsdl:part name="error" element="typens:error"/>
+    </wsdl:message>
+    <wsdl:portType name="Product">
+        <wsdl:operation name="getProductDetails">
+            <wsdl:input message="tns:ProductRequest"/>
+            <wsdl:output message="tns:ProductResponse"/>
+            <wsdl:fault name="error" message="tns:ErrorMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ProductSOAPBinding" type="tns:Product">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getProductDetails">
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="error">
+                <soap:fault name="error" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ProductService">
+        <wsdl:port binding="tns:ProductSOAPBinding" name="ProductPort">
+            <soap:address location="http://localhost:9090/productService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

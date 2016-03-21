@@ -82,7 +82,7 @@ springBoot {
 wsdl2java {
     generatedWsdlDir = file("target/generated-sources/wsdl2java")  // target directory for generated source code
     wsdlDir          = file("src/main/resources/META-INF/wsdl") // define to support incremental build
-    wsdlsToGenerate  = [['src/main/resources/META-INF/wsdl/SubscriptionService.wsdl']]
+    wsdlsToGenerate  = [['src/main/resources/META-INF/wsdl/example.wsdl']]
     cxfVersion       = "3.1.0"
 }
 
