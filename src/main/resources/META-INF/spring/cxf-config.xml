@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xmlns:soap="http://cxf.apache.org/bindings/soap"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+                           http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
+
+    <cxf:cxfEndpoint id="routerEndpoint"
+                     address="http://localhost:9003/CamelContext/RouterPort"
+                     serviceClass="com.javacodegeeks.ws.product_service.ProductService"/>
+    <cxf:cxfEndpoint id="serviceEndpoint"
+                     address="http://localhost:9000/SoapContext/SoapPort"
+                     serviceClass="com.javacodegeeks.ws.product_service.ProductService">
+        <cxf:binding>
+            <soap:soapBinding version="1.2"/>
+        </cxf:binding>
+        <cxf:properties>
+            <entry key="dataFormat" value="PAYLOAD"/>
+        </cxf:properties>
+
+    </cxf:cxfEndpoint>
+
+</beans>
