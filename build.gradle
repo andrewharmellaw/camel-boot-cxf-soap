@@ -45,17 +45,45 @@ repositories {
     }
 }
 
+def springBootVersion= '1.3.1.RELEASE'
+def camelVersion= '2.16.2'
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integrationtest/java')
+        }
+        resources.srcDir file('src/integrationtest/resources')
+    }
+}
+
 configurations {
-    compile.exclude(module: 'spring-boot-starter-tomcat')
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
 }
 
 dependencies {
-    compile (group: 'org.apache.camel',         	name: 'camel-spring-boot',            		version: '2.16.1')
-    compile (group: 'org.apache.camel',         	name: 'camel-cxf',                    		version: '2.16.1')
+    compile (group: 'org.apache.camel',         	name: 'camel-spring-boot',            		version: camelVersion)
+    compile (group: 'org.apache.camel',         	name: 'camel-cxf',                    		version: camelVersion)
     compile (group: 'org.apache.cxf',           	name: 'cxf-rt-transports-http-jetty', 		version: '3.1.4')
-    compile (group: 'org.springframework.boot', 	name: 'spring-boot',                  		version: '1.3.1.RELEASE')
-    compile (group: 'org.springframework.boot', 	name: 'spring-boot-starter-web',      		version: '1.3.1.RELEASE')
-    compile (group: 'org.springframework.boot' ,	name: 'spring-boot-starter-jetty',    		version: '1.3.1.RELEASE')
+    compile (group: 'org.springframework.boot', 	name: 'spring-boot',                  		version: springBootVersion)
+    compile (group: 'org.springframework.boot', 	name: 'spring-boot-starter-web',      		version: springBootVersion)
+    compile (group: 'org.springframework.boot' ,	name: 'spring-boot-starter-jetty',    		version: springBootVersion)
     compile (group: 'com.netflix.hystrix',      	name: 'hystrix-metrics-event-stream',       version: '1.3.16')
     compile (group: 'com.capgemini',            	name: 'codahale-metrics-filters',           version: '0.11.0')
     compile (group: 'com.bealetech',            	name: 'metrics-statsd',                     version: '3.0.2')
@@ -64,8 +92,8 @@ dependencies {
 
     testCompile (group: 'junit',                    name: 'junit',                    			version: '4.11')
     testCompile (group: 'com.jayway.restassured',   name: 'rest-assured',             			version: '2.4.1')
-    testCompile (group: 'org.apache.camel',         name: 'camel-test-spring',        			version: '2.16.1')
-    testCompile (group: 'org.springframework.boot', name: 'spring-boot-starter-test', 			version: '1.3.1.RELEASE')
+    testCompile (group: 'org.apache.camel',         name: 'camel-test-spring',        			version: camelVersion)
+    testCompile (group: 'org.springframework.boot', name: 'spring-boot-starter-test', 			version: springBootVersion)
 //    testCompile (group: 'javax.servlet',            name: 'javax.servlet-api',        version: '3.1.0') // TODO: this is a duplicate
 }
 
