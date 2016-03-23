@@ -18,15 +18,12 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @WebAppConfiguration
 public class RouteIntegrationTests {
 
-    @Value("${test.restassured.baseUri}")
-    private String baseUri;
-
     @Value("${test.restassured.port}")
     private int port;
 
     @Before
     public void setUp() throws Exception {
-        RestAssured.baseURI = baseUri;
+        RestAssured.baseURI = "http://localhost";
     }
 
     @Test
