@@ -18,3 +18,4 @@ bin/
 
 /.gradle/
 /build/
+tmp/
