@@ -89,13 +89,14 @@ dependencies {
     compile(group: 'org.springframework.boot',  name: 'spring-boot-starter-jetty',          version: springBootVersion)
     compile(group: 'com.netflix.hystrix',       name: 'hystrix-metrics-event-stream',       version: '1.3.16')
     compile(group: 'com.capgemini',             name: 'codahale-metrics-filters',           version: '0.11.0')
-    compile(group: 'com.bealetech',             name: 'metrics-statsd',                     version: '3.0.2')
+    compile(group: 'com.bealetech',             name: 'metrics-statsd',                     version: '3.0.0-CAPGEMINI')
     compile(group: 'com.capgemini',             name: 'springboot-camel-metrics-publisher', version: '0.12.0')
     compile(group: 'com.capgemini',             name: 'archaius-spring-adapter',            version: '0.10.2')
     compile(group: 'ch.qos.logback',            name: 'logback-access',                     version: '1.1.6')
     compile(group: 'ch.qos.logback',            name: 'logback-classic',                    version: '1.1.6')
     compile(group: 'org.slf4j',                 name: 'slf4j-api',                          version: '1.7.7')
-
+    compile(group: 'com.capgemini',             name: 'jetty-server-request-logger',        version: '0.9.0')
+    
     testCompile(group: 'junit',                     name: 'junit',                              version: '4.11')
     testCompile(group: 'com.jayway.restassured',    name: 'rest-assured',                       version: '2.4.1')
     testCompile(group: 'org.apache.camel',          name: 'camel-test-spring',                  version: camelVersion)
