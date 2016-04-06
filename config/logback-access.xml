@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="5 seconds" debug="true">
+
+	<appender name="ACCESS-FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_PATH}/access.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_PATH}/access.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+		</rollingPolicy>
+		<encoder>
+            <pattern>%header{X-Forwarded-For} %clientHost [%date{dd-MMM-yyyy HH:mm:ss.SSS}] "%requestURL" "%header{Referer}" "%header{User-Agent}" %statusCode %bytesSent %elapsedTime</pattern>
+        </encoder>
+	</appender> 
+
+	<appender-ref ref = "ACCESS-FILE" />
+	
+</configuration>

@@ -1,7 +1,7 @@
 # camel-boot-cxf-soap
 A seed-project for starting new CXF-based SOAP-API Camel/Spring Boot projects.
 
-This project is to be used to kick-start Camel/Spring-Boot projects (e.g. microservices) which expose a SOAP API.  When used in conjunction with camel-boot (which does the same thing but exposes REST APIs) you have a good starter for ten for most microservices youmay want to create.
+This project is to be used to kick-start Camel/Spring-Boot projects (e.g. microservices) which expose a SOAP API.  When used in conjunction with camel-boot (which does the same thing but exposes REST APIs) you have a good starter for ten for most microservices you may want to create.
 
 # Acknowledgements
 The idea for these projects was pretty much stolen from Netflix's [Karyon](https://github.com/Netflix/karyon).  It then evolved as we built more and more Microservice-based solutions at Capgemini.  
